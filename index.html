@@ -32,16 +32,13 @@
         aria-controls="offcanvasDarkNavbar" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <img class="navbar-brand" src="./logo.png" width="100" class="d-inline-block align-top"
-        alt="Promessistas Coroado">
-
+      <img class="navbar-brand" src="./hbj_transparent.png" width="100" class="d-inline-block align-top" alt="HBJ">
 
       <div class="offcanvas offcanvas-start text-bg-dark" tabindex="-1" id="offcanvasDarkNavbar"
         aria-labelledby="offcanvasDarkNavbarLabel">
 
         <div class="offcanvas-header">
-          <img class="offcanvas-title" src="./image.png" width="300" id="offcanvasDarkNavbarLabel"
-            class="d-inline-block align-top" alt="">
+          <h3 class="offcanvas-title">Índice</h3>
           <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas"
             aria-label="Close"></button>
         </div>
@@ -56,30 +53,28 @@
 
   <div class="off-canvas-wrapper">
     <div class="off-canvas-wrapper-inner" data-off-canvas-wrapper>
-      <div class="callout primary" style="min-height: 60vh">
+      <div class="callout" style="min-height: 60vh">
         <div class="">
-          <h1><span id="number"></span> - <span id="title"></span></h1>
+          <h3><span id="number"></span> - <span id="title"></span></h3>
           <pre id="demo"></pre>
 
         </div>
       </div>
     </div>
 
-    <hr>
-
     <div class="row">
       <div class="medium-6 columns">
         <h4>Fale Conosco</h4>
       </div>
       <form id="meu-form" class="medium-6 columns" action="https://formspree.io/f/xnndgajn" method="POST">
-        <label>Nome
-          <input type="email" name="email" placeholder="Seu nome" required>
+        <label>Nome*
+          <input type="text" name="nome" placeholder="Seu nome" required>
         </label>
-        <label>E-mail
-          <input type="text" placeholder="Seu e-mail">
+        <label>E-mail*
+          <input type="email" name="email" placeholder="Seu e-mail" required>
         </label>
         <label>
-          Mensagem
+          Mensagem*
           <textarea name="message" placeholder="Sua mensagem" required></textarea>
         </label>
         <button type="submit" class="button expanded" style="background-color: #103e6b" value="Submit">Enviar</button>
@@ -117,7 +112,7 @@
             class="btn btn-info" 
             style="background-color: #103e6b; text-wrap: auto; display: grid; grid-template-columns: 20% 80%; align-items: center; text-align: start; width: 100%;" 
             onclick=" setElement(${e.id})">
-              <span>${e.id}</span>
+              <span>${e.id}.</span>
               <span>${e.nome}</span>
           </button>`;
         });
@@ -132,7 +127,7 @@
                 ${start} a ${start + 99}
               </button>
             </h2>
-            <div id="collapse_${page}" class="accordion-collapse collapse show" data-bs-parent="#accordion_${page}">
+            <div id="collapse_${page}" class="accordion-collapse collapse" data-bs-parent="#accordion_${page}">
               <div class="accordion-body">
                 ${btnsHtml}
               </div>
@@ -145,7 +140,9 @@
         const element = array.find(e => e.id === id);
         document.getElementById('number').innerHTML = element.id;
         document.getElementById('title').innerHTML = element.nome;
-        document.getElementById('demo').innerHTML = element.letra;
+
+        const letraFormatada = element.letra.replace(/\*\*\*([\s\S]*?)\*\*\*/g, '<em>$1</em>');
+        document.getElementById('demo').innerHTML = letraFormatada;
       }
 
       function showList() {
@@ -180,12 +177,22 @@
       });
     </script>
     <style>
+      body {
+        background-color: rgb(52, 58, 64);
+      }
+
+      body,
+      label {
+        color: #fff !important;
+      }
+
       .accordion {
         background: transparent !important;
         border: none !important;
         --bs-accordion-active-bg: #92b3e6;
         --bs-accordion-color: #ffffff;
         --bs-accordion-bg: #0f4070;
+        padding-bottom: 10px;
       }
 
       .accordion-button::after {
@@ -205,6 +212,28 @@
       .accordion-body {
         padding: 0 !important;
         border: none;
+      }
+
+      .btn-info {
+        border-color: #1e568d;
+      }
+
+      .accordion-button:not(.collapsed) {
+        box-shadow: none;
+      }
+
+      .callout {
+        margin-bottom: 30px;
+        padding-left: 30px;
+        color: #0f4070;
+      }
+
+      pre {
+        font-family: unset;
+      }
+
+      pre em {
+        font-style: italic;
       }
     </style>
 </body>
