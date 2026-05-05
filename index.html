@@ -179,6 +179,34 @@
         }
       });
     </script>
+    <style>
+      .accordion {
+        background: transparent !important;
+        border: none !important;
+        --bs-accordion-active-bg: #92b3e6;
+        --bs-accordion-color: #ffffff;
+        --bs-accordion-bg: #0f4070;
+      }
+
+      .accordion-button::after {
+        background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' fill='none' stroke='%23ffffff' stroke-linecap='round' stroke-linejoin='round'%3e%3cpath d='m2 5 6 6 6-6'/%3e%3c/svg%3e") !important;
+      }
+
+      .accordion-item {
+        /* color: var(--bs-accordion-color); */
+        background-color: transparent !important;
+        border: none !important;
+      }
+
+      .accordion-button {
+        color: #ffffff !important;
+      }
+
+      .accordion-body {
+        padding: 0 !important;
+        border: none;
+      }
+    </style>
 </body>
 
 </html>
