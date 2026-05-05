@@ -93,24 +93,60 @@
     <script>
       let number = "";
       let title = "";
-      let txt = "";
       let array = letras;
 
-      array.forEach((e, index) => {
-        txt += `<button type="button" data-bs-dismiss="offcanvas" class="btn btn-info" style="background-color: #103e6b;text-wrap: auto;display: grid;grid-template-columns: 20% 80%;align-items: center;" onclick="setElement(` + index + `)">
-        <input class="form-check-input" type="radio" name="`+ e.id + `" value="` + e.id + `" id="` + e.id + `" style="margin: 0;">
-          <span>`+ e.id + `</span>
-          <span class="form-check-label" for="`+ e.id + `">` + e.nome + `</span>
-      </button>`
-      });
+      let _1a99 = renderBtns(0);
+      let _100a199 = renderBtns(1);
+      let _200a299 = renderBtns(2);
+      let _300a399 = renderBtns(3);
+      let _400a499 = renderBtns(4);
+      let _500a599 = renderBtns(5);
 
+      let btns = _1a99 + _100a199 + _200a299 + _300a399 + _400a499 + _500a599;
+
+      document.getElementById("buttonArea").innerHTML = btns;
+
+      function renderBtns(page) {
+        const start = page * 100;
+        const items = array.slice(start, start + 100);
+        let btnsHtml = '';
+
+        items.forEach((e, i) => {
+          const index = start + i; // índice original
+          btnsHtml += `<button type="button" data-bs-dismiss="offcanvas" 
+            class="btn btn-info" 
+            style="background-color: #103e6b; text-wrap: auto; display: grid; grid-template-columns: 20% 80%; align-items: center; text-align: start; width: 100%;" 
+            onclick=" setElement(${e.id})">
+              <span>${e.id}</span>
+              <span>${e.nome}</span>
+          </button>`;
+        });
+
+        return `<div class="accordion" id="accordion_${page}">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button class="accordion-button" type="button" 
+                data-bs-toggle="collapse" 
+                data-bs-target="#collapse_${page}" 
+                aria-controls="collapse_${page}">
+                ${start} a ${start + 99}
+              </button>
+            </h2>
+            <div id="collapse_${page}" class="accordion-collapse collapse show" data-bs-parent="#accordion_${page}">
+              <div class="accordion-body">
+                ${btnsHtml}
+              </div>
+            </div>
+          </div>
+        </div>`;
+      }
 
       function setElement(id) {
-        document.getElementById('number').innerHTML = array[id].id;
-        document.getElementById('title').innerHTML = array[id].nome;
-        document.getElementById('demo').innerHTML = array[id].letra;
+        const element = array.find(e => e.id === id);
+        document.getElementById('number').innerHTML = element.id;
+        document.getElementById('title').innerHTML = element.nome;
+        document.getElementById('demo').innerHTML = element.letra;
       }
-      document.getElementById("buttonArea").innerHTML = txt;
 
       function showList() {
         var element = document.getElementById("buttonArea");
