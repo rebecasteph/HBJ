@@ -58,9 +58,9 @@
         <div class="">
           <h3><span id="number"></span> - <span id="title"></span></h3>
           <pre id="demo"></pre>
-          <div class="d-flex align-items-center gap-2 ms-auto">
+          <div class="d-flex align-items-center gap-2 ms-auto" style="bottom: 30px; right: 30px; position: fixed;">
             <button onclick="mudarFonte(-1)" class="btn btn-sm"
-              style="background:#1e568d; color:#fff; font-weight:bold; font-size:1rem; width:36px; height:36px;">A-</button>
+              style="background:#1e568d; color:#fff; font-weight:bold; font-size:1.2rem; width:36px; height:36px;">A-</button>
             <button onclick="mudarFonte(1)" class="btn btn-sm"
               style="background:#1e568d; color:#fff; font-weight:bold; font-size:1.2rem; width:36px; height:36px;">A+</button>
           </div>
@@ -202,7 +202,7 @@
         document.getElementById('demo').style.lineHeight = (tamanho * 1.6) + 'px';
       }
     </script>
-    
+
     <style>
       body {
         background-color: rgb(52, 58, 64);
@@ -211,6 +211,15 @@
       body,
       label {
         color: #fff !important;
+      }
+
+      .container-fluid {
+        margin: 0px !important;
+        padding: 0px !important;
+      }
+
+      .navbar {
+        padding: .5rem 0 !important;
       }
 
       .accordion {
@@ -250,13 +259,14 @@
       }
 
       .callout {
-        margin-bottom: 30px;
-        padding-left: 30px;
+        margin-bottom: 20px;
+        padding-left: 20px;
         color: #0f4070;
       }
 
       pre {
         font-family: unset;
+        text-wrap: auto
       }
 
       pre em {
